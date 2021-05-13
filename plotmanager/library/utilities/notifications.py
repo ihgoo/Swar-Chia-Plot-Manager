@@ -1,9 +1,15 @@
 import discord_notify
 import playsound
 import pushover
+from urllib import request
 
 
 def _send_notifications(title, body, settings):
+    if settings.get('pushplus') is True:
+        url = 'http://www.pushplus.plus/send?token='+settings.get('pushplus_key')+'&title='+title+'&content='+body+'&template=html';
+        req = request.Request(url)
+        res = request.urlopen(req)
+        
     if settings.get('notify_discord') is True:
         notifier = discord_notify.Notifier(settings.get('discord_webhook_url'))
         notifier.send(body, print_message=False)
