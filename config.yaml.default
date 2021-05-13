@@ -43,7 +43,10 @@ view:
 
 notifications:
   # These are different settings in order to notified when the plot manager starts and when a plot has been completed.
-
+  # pushplus
+  pushplus: true
+  pushplus_key: xxxxxxxxxx
+  
   # DISCORD
   notify_discord: false
   discord_webhook_url: https://discord.com/api/webhooks/0000000000000000/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
