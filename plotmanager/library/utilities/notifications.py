@@ -1,12 +1,14 @@
 import discord_notify
 import playsound
 import pushover
+from urllib.parse import quote
 from urllib import request
+
 
 
 def _send_notifications(title, body, settings):
     if settings.get('pushplus') is True:
-        url = 'http://www.pushplus.plus/send?token='+settings.get('pushplus_key')+'&title='+title+'&content='+body+'&template=html';
+        url = 'http://www.pushplus.plus/send?token='+settings.get('pushplus_key')+'&title='+quote(title, 'utf-8')+'&content='+quote(body, 'utf-8')+'&template=html';
         req = request.Request(url)
         res = request.urlopen(req)
         
@@ -23,7 +25,4 @@ def _send_notifications(title, body, settings):
 
 
 def send_notifications(title, body, settings):
-    try:
-        _send_notifications(title=title, body=body, settings=settings)
-    except:
-        pass
+    _send_notifications(title=title, body=body, settings=settings)
